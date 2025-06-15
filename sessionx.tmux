@@ -2,7 +2,6 @@
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_DIR="$CURRENT_DIR/scripts"
-CURRENT="$(tmux display-message -p '#S')"
 
 source "$SCRIPTS_DIR/tmuxinator.sh"
 source "$SCRIPTS_DIR/fzf-marks.sh"
@@ -135,7 +134,7 @@ handle_args() {
 
 	legacy=$(tmux_option_or_fallback "@sessionx-legacy-fzf-support" "off")
 	if [[ "${legacy}" == "off" ]]; then
-		args+=(--border-label "Current session: \"$CURRENT\" ")
+		# args+=(--border-label "Current session: \"$CURRENT\" ")
 		args+=(--bind 'focus:transform-preview-label:echo [ {} ]')
 	fi
 	auto_accept=$(tmux_option_or_fallback "@sessionx-auto-accept" "off")
